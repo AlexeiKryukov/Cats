@@ -31,15 +31,27 @@ def open_new_window():
         label.image = img
 
 
+def load_rnd_cat():
+    url = f'https://cataas.com/cat'
+    img = load_image(url)
+    if img:
+        new_window = Toplevel()
+        new_window.title('Картинка со случайным котиком')
+        new_window.geometry('600x480')
+        label = Label(new_window, image=img)
+        label.pack()
+        label.image = img
+
 def exit():
     window.destroy()
 
 
-Allowed_tags = ['sleep', 'jump', 'fight', 'black', 'white', 'bengal', 'siamese', 'cute', ]
+Allowed_tags = ['sleep', 'jump', 'fight', 'black', 'white', 'bengal', 'siamese',
+                'orange', 'cute', ]
 
 window = Tk()
 window.title('Cats')
-window.geometry('600x520')
+window.geometry('400x150')
 
 menu_bar = Menu(window)
 window.config(menu=menu_bar)
@@ -59,6 +71,9 @@ tag_combobox = ttk.Combobox(values=Allowed_tags)
 tag_combobox.pack()
 
 load_button = Button(text='Загрузить по тегу', command=open_new_window)
-load_button.pack()
+load_button.pack(pady=2)
+
+rand_cat_btn = Button(text='Загрузить случайного котика', command=load_rnd_cat)
+rand_cat_btn.pack(pady=10)
 
 window.mainloop()
